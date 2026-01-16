@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.collegeplacementtracker.utils.SessionManager
 
 class DepartmentStudentsActivity : AppCompatActivity() {
 
@@ -24,7 +25,7 @@ class DepartmentStudentsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "Department Students"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         applicationDao = database.applicationDao()
@@ -62,7 +63,7 @@ class DepartmentStudentsActivity : AppCompatActivity() {
     }
 
     private fun showStudentDetails(student: User) {
-        applicationDao.getApplicationsByStudent(student.id).observe(this) { applications ->
+        applicationDao.getApplicationsByStudent(student.id.toLong()).observe(this) { applications ->
             val appliedCount = applications.size
             val selectedCount = applications.count { it.status == ApplicationStatus.SELECTED }
             val placementStatus = if (selectedCount > 0) "✅ Placed" else "⏳ Not Placed"

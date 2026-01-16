@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.collegeplacementtracker.utils.NotificationHelper
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.UIHelper
 
 import kotlinx.coroutines.delay
@@ -34,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         // Check if already logged in
         if (sessionManager.isLoggedIn()) {

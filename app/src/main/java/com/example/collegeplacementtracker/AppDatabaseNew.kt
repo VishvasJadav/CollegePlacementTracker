@@ -14,9 +14,13 @@ import kotlinx.coroutines.launch
         User::class,
         Company::class,
         Application::class,
-        Interview::class
+        Interview::class,
+        Resume::class,
+        Document::class,
+        Notification::class,
+        Alumni::class
     ],
-    version = 6,  // Increased version for indices change
+    version = 7,  // V3.0 - Added Resume, Document, Notification, Alumni
     exportSchema = false
 )
 abstract class AppDatabaseNew : RoomDatabase() {
@@ -26,6 +30,10 @@ abstract class AppDatabaseNew : RoomDatabase() {
     abstract fun companyDao(): CompanyDao
     abstract fun applicationDao(): ApplicationDao
     abstract fun interviewDao(): InterviewDao
+    abstract fun resumeDao(): ResumeDao
+    abstract fun documentDao(): DocumentDao
+    abstract fun notificationDao(): NotificationDao
+    abstract fun alumniDao(): AlumniDao
 
     companion object {
         @Volatile
@@ -57,6 +65,110 @@ abstract class AppDatabaseNew : RoomDatabase() {
             }
         }
 
+        val MIGRATION_6_7 = object : androidx.room.migration.Migration(6, 7) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Create resumes table
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS resumes (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        studentId INTEGER NOT NULL,
+                        fileName TEXT NOT NULL,
+                        filePath TEXT NOT NULL,
+                        fileSize INTEGER NOT NULL,
+                        mimeType TEXT NOT NULL,
+                        resumeType TEXT NOT NULL,
+                        uploadedAt INTEGER NOT NULL,
+                        lastModified INTEGER NOT NULL,
+                        isActive INTEGER NOT NULL DEFAULT 1,
+                        parsedSkills TEXT,
+                        parsedExperience TEXT,
+                        parsedEducation TEXT,
+                        resumeScore INTEGER,
+                        lastScanned INTEGER,
+                        FOREIGN KEY(studentId) REFERENCES user_table(id) ON DELETE CASCADE
+                    )
+                """
+                )
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_resumes_studentId ON resumes(studentId)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_resumes_uploadedAt ON resumes(uploadedAt)")
+
+                // Create documents table
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS documents (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        studentId INTEGER NOT NULL,
+                        documentType TEXT NOT NULL,
+                        fileName TEXT NOT NULL,
+                        filePath TEXT NOT NULL,
+                        uploadedAt INTEGER NOT NULL,
+                        verificationStatus TEXT NOT NULL DEFAULT 'pending',
+                        verifiedBy INTEGER,
+                        verifiedAt INTEGER,
+                        rejectionReason TEXT,
+                        expiryDate INTEGER,
+                        isActive INTEGER NOT NULL DEFAULT 1,
+                        FOREIGN KEY(studentId) REFERENCES user_table(id) ON DELETE CASCADE
+                    )
+                """
+                )
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_documents_studentId ON documents(studentId)")
+
+                // Create notifications table
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS notifications (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        userId INTEGER NOT NULL,
+                        title TEXT NOT NULL,
+                        message TEXT NOT NULL,
+                        type TEXT NOT NULL,
+                        relatedId INTEGER,
+                        createdAt INTEGER NOT NULL,
+                        isRead INTEGER NOT NULL DEFAULT 0,
+                        readAt INTEGER,
+                        actionUrl TEXT,
+                        priority TEXT NOT NULL DEFAULT 'normal'
+                    )
+                """
+                )
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_notifications_userId ON notifications(userId)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_notifications_createdAt ON notifications(createdAt)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_notifications_isRead ON notifications(isRead)")
+
+                // Create alumni table
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS alumni (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        studentId INTEGER NOT NULL,
+                        graduationYear INTEGER NOT NULL,
+                        currentCompany TEXT NOT NULL,
+                        currentPosition TEXT NOT NULL,
+                        currentPackage REAL,
+                        yearsOfExperience INTEGER NOT NULL DEFAULT 0,
+                        linkedInUrl TEXT,
+                        githubUrl TEXT,
+                        portfolioUrl TEXT,
+                        willingToMentor INTEGER NOT NULL DEFAULT 0,
+                        mentorshipAreas TEXT,
+                        availableForReferrals INTEGER NOT NULL DEFAULT 0,
+                        bio TEXT,
+                        achievements TEXT,
+                        isVerified INTEGER NOT NULL DEFAULT 0,
+                        createdAt INTEGER NOT NULL,
+                        lastUpdated INTEGER NOT NULL,
+                        FOREIGN KEY(studentId) REFERENCES user_table(id) ON DELETE CASCADE
+                    )
+                """
+                )
+                database.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_alumni_studentId ON alumni(studentId)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_alumni_graduationYear ON alumni(graduationYear)")
+                database.execSQL("CREATE INDEX IF NOT EXISTS index_alumni_currentCompany ON alumni(currentCompany)")
+            }
+        }
+
         fun getDatabase(context: Context, scope: CoroutineScope): AppDatabaseNew {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
@@ -64,7 +176,7 @@ abstract class AppDatabaseNew : RoomDatabase() {
                     AppDatabaseNew::class.java,
                     "placement_database_v2"
                 )
-                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6)
+                    .addMigrations(MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
                     .fallbackToDestructiveMigration()  // For development: recreate DB if migration fails
                     .addCallback(DatabaseCallback(scope))
                     .build()

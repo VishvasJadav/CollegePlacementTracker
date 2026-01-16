@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.UIHelper
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ class TPODashboardActivityEnhanced : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tpo_dashboard_enhanced)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         if (!sessionManager.isLoggedIn() || !sessionManager.isTPO()) {
             navigateToLogin()
@@ -116,7 +117,7 @@ class TPODashboardActivityEnhanced : AppCompatActivity() {
             userDao.getUsersByRole(UserRole.STUDENT)
                 .observe(this@TPODashboardActivityEnhanced) { students ->
                     for (student in students) {
-                        applicationDao.getApplicationsByStudent(student.id)
+                        applicationDao.getApplicationsByStudent(student.id.toLong())
                             .observe(this@TPODashboardActivityEnhanced) { applications ->
                                 val selectedApps = applications.filter {
                                     it.status == ApplicationStatus.SELECTED

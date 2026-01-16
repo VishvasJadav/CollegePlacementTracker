@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.collegeplacementtracker.databinding.ActivityStudentProfileBinding
+import com.example.collegeplacementtracker.utils.SessionManager
 import kotlinx.coroutines.launch
 
 class StudentProfileActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class StudentProfileActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "My Profile"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         userDao = database.userDao()
 

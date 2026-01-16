@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.example.collegeplacementtracker.utils.SessionManager
 
 class StudentDashboardActivity : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         // Check if logged in
         if (!sessionManager.isLoggedIn()) {

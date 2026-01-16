@@ -13,9 +13,9 @@ import com.example.collegeplacementtracker.ApplicationDao
 import com.example.collegeplacementtracker.ApplicationStatus
 import com.example.collegeplacementtracker.Company
 import com.example.collegeplacementtracker.R
-import com.example.collegeplacementtracker.SessionManager
 import com.example.collegeplacementtracker.utils.DateUtils
 import com.example.collegeplacementtracker.utils.NotificationHelper
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.UIHelper
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
@@ -38,7 +38,7 @@ class CompanyDetailsBottomSheet(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        sessionManager = SessionManager(requireContext())
+        sessionManager = SessionManager.getInstance(requireContext())
 
         setupViews(view)
         setupButtons(view)

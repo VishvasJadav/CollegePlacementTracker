@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.collegeplacementtracker.utils.SessionManager
 
 class TPODashboardActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class TPODashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         // Check if logged in and is TPO
         if (!sessionManager.isLoggedIn() || !sessionManager.isTPO()) {

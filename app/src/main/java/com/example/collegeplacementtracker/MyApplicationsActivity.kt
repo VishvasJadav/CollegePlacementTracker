@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.collegeplacementtracker.utils.SessionManager
 
 class MyApplicationsActivity : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class MyApplicationsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "My Applications"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         applicationDao = database.applicationDao()
@@ -49,6 +50,7 @@ class MyApplicationsActivity : AppCompatActivity() {
         val userId = sessionManager.getUserId()
 
         // Use the new query that returns ApplicationWithCompany
+
         applicationDao.getApplicationsWithCompanyByStudent(userId)
             .observe(this) { applications ->
                 if (applications.isEmpty()) {

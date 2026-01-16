@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.collegeplacementtracker.utils.SessionManager
 import kotlinx.coroutines.launch
 
 class HODApprovalsActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class HODApprovalsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "Pending Approvals"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         applicationDao = database.applicationDao()

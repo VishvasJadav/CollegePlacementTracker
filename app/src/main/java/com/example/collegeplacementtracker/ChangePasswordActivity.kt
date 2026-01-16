@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.collegeplacementtracker.utils.OTPUtils
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.ValidationUtils
 import kotlinx.coroutines.launch
 
@@ -24,7 +25,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_password)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         userDao = database.userDao()
 
@@ -89,9 +90,9 @@ class ChangePasswordActivity : AppCompatActivity() {
             try {
                 val userId = sessionManager.getUserId()
 
-                if (userId != -1) {
+                if (userId != -1L) {
                     // Get the full user data from the database
-                    val user = userDao.getUserByIdSync(userId)
+                    val user = userDao.getUserByIdSync(userId.toInt().toLong())
 
                     if (user != null) {
                         // Verify current password

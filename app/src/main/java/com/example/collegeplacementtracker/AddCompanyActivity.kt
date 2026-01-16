@@ -7,6 +7,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
@@ -37,7 +38,7 @@ class AddCompanyActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "Post New Company"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         companyDao = database.companyDao()
 
@@ -95,7 +96,7 @@ class AddCompanyActivity : AppCompatActivity() {
                     applicationDeadline = deadlineEditText.text.toString().trim(),
                     totalPositions = totalPositionsEditText.text.toString().toInt(),
                     companyType = companyTypeSpinner.selectedItem.toString(),
-                    postedBy = sessionManager.getUserId()
+                    postedBy = sessionManager.getUserId().toInt()
                 )
 
                 companyDao.insert(company)

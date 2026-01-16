@@ -22,6 +22,37 @@ for Students, HODs, and Training & Placement Officers (TPO).
 - **Sort Options**: Sort by package amount or application deadline
 - **Real-time Filtering**: Instant results as you type
 
+#### Search Implementation
+
+```kotlin
+SearchView with real-time filtering
+- Company names
+- Job roles  
+- Locations
+- Instant results
+```
+
+#### Filter System
+
+```kotlin
+Filter Chips:
+├── Package Ranges
+│   ├── 0-5 LPA
+│   ├── 5-10 LPA
+│   └── 10+ LPA
+├── Company Types
+│   ├── Service
+│   └── Product
+└── Eligibility
+    └── Auto-filtered based on user profile
+```
+
+#### Sorting Options
+
+- By Package (Highest first)
+- By Deadline (Most urgent first)
+- By Posted Date
+
 ### 🎨 Improved User Experience
 
 - **Material Design 3**: Modern UI with smooth animations
@@ -64,6 +95,58 @@ for Students, HODs, and Training & Placement Officers (TPO).
 - **LiveData**: Reactive UI updates
 - **Room Database**: Robust local data persistence
 - **MVVM Pattern**: Maintainable and testable code
+
+### 📦 Utility Classes
+
+New utility classes for better code organization:
+
+1. **SecurityUtils.kt**
+    - Password hashing with PBKDF2
+    - Salt generation
+    - Password verification
+    - Backward compatibility with simple hash
+
+2. **ValidationUtils.kt**
+    - Email validation with Android Patterns
+    - Phone number validation (Indian format)
+    - Roll number validation
+    - CGPA validation (0-10 range)
+    - Password strength checking
+    - Package amount validation
+    - Company name validation
+    - Job role validation
+
+3. **UIHelper.kt**
+    - showError() - Display error messages
+    - showSuccess() - Display success messages
+    - showInfo() - Display information messages
+    - showErrorWithRetry() - Error with retry button
+    - getErrorMessage() - Parse exceptions to user-friendly text
+
+4. **DateUtils.kt**
+    - formatDate() - Format timestamp to date
+    - formatDateTime() - Format timestamp to date-time
+    - formatTime() - Format timestamp to time
+    - getRelativeTime() - "2 hours ago" style
+    - parseDate() - String to timestamp
+    - isPastDate() - Check if date has passed
+    - isToday() - Check if date is today
+    - getDaysUntil() - Calculate days until deadline
+
+5. **NotificationHelper.kt**
+    - createNotificationChannel() - Setup notification channels
+    - sendApplicationStatusNotification() - Application updates
+    - sendNewCompanyNotification() - New company alerts
+    - sendDeadlineReminder() - Deadline notifications
+    - sendApprovalRequestNotification() - Approval alerts
+
+### 📱 UI Components
+
+- **CompanyDetailsBottomSheet.kt**: Modern bottom sheet for company details
+    - Better UX than AlertDialog
+    - Smooth animations
+    - More space for information
+    - Quick actions (Apply, Share, Close)
 
 ## 📱 User Roles & Features
 
@@ -195,6 +278,36 @@ app/
 - **iTextG**: 5.5.10 (PDF Generation)
 - **Gson**: 2.10.1 (JSON Processing)
 
+### New Libraries Added (10 Total)
+
+```gradle
+// Background Processing
+implementation 'androidx.work:work-runtime-ktx:2.9.0'
+
+// Data Storage
+implementation 'androidx.datastore:datastore-preferences:1.0.0'
+
+// UI Components
+implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+// Animations
+implementation 'com.airbnb.android:lottie:6.2.0'
+
+// Images
+implementation 'io.coil-kt:coil:2.5.0'
+
+// Charts
+implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+// JSON
+implementation 'com.google.code.gson:gson:2.10.1'
+
+// Testing
+testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
+testImplementation 'androidx.arch.core:core-testing:2.2.0'
+```
+
 ## 🎨 UI/UX Improvements
 
 ### Color Scheme
@@ -264,6 +377,84 @@ NotificationHelper.sendNewCompanyNotification(
 )
 ```
 
+### Usage Examples for Developers
+
+#### Using Security Utils
+
+```kotlin
+// Hash password during signup
+val (hash, salt) = SecurityUtils.hashPassword(password)
+user.password = hash
+user.passwordSalt = salt
+
+// Verify during login
+val isValid = SecurityUtils.verifyPassword(
+    enteredPassword, 
+    user.password, 
+    user.passwordSalt
+)
+```
+
+#### Using Validation
+
+```kotlin
+// Validate before saving
+val (emailValid, emailMsg) = ValidationUtils.isValidEmail(email)
+val (cgpaValid, cgpaMsg) = ValidationUtils.isValidCGPA(cgpa)
+val (passwordValid, passwordMsg) = ValidationUtils.isStrongPassword(password)
+
+if (!emailValid || !cgpaValid || !passwordValid) {
+    // Show appropriate errors
+}
+```
+
+#### Using UI Helpers
+
+```kotlin
+try {
+    // Perform operation
+    saveData()
+    UIHelper.showSuccess(context, "Saved successfully!")
+} catch (e: Exception) {
+    UIHelper.showError(context, UIHelper.getErrorMessage(e))
+}
+```
+
+#### Using Date Utils
+
+```kotlin
+// Display relative time
+val appliedText = "Applied ${DateUtils.getRelativeTime(application.appliedAt)}"
+
+// Check deadline urgency
+val daysLeft = DateUtils.getDaysUntil(company.deadline)
+val urgencyColor = when {
+    daysLeft < 0 -> R.color.red
+    daysLeft <= 3 -> R.color.orange
+    else -> R.color.green
+}
+```
+
+#### Using Notifications
+
+```kotlin
+// When application status changes
+NotificationHelper.sendApplicationStatusNotification(
+    context,
+    company.name,
+    newStatus,
+    applicationId
+)
+
+// When new company is added
+NotificationHelper.sendNewCompanyNotification(
+    context,
+    company.name,
+    company.packageAmount,
+    company.id
+)
+```
+
 ## 📊 Database Schema
 
 ### User Table
@@ -307,6 +498,50 @@ Run tests:
 ```bash
 ./gradlew test
 ./gradlew connectedAndroidTest
+```
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**1. App Won't Start**
+
+```
+Solution: Clean and rebuild
+- Build → Clean Project
+- Build → Rebuild Project
+```
+
+**2. Database Errors**
+
+```
+Solution: Clear app data
+- Settings → Apps → Placement Tracker → Clear Data
+OR
+- Increment database version in AppDatabaseNew.kt
+```
+
+**3. Gradle Sync Failed**
+
+```
+Solution: Invalidate caches
+- File → Invalidate Caches → Restart
+```
+
+**4. Can't Login**
+
+```
+Solution: Use test accounts (see above)
+OR check if database populated (see AppDatabaseNew.kt)
+```
+
+**5. Search Not Working**
+
+```
+Solution: 
+- Check if companies exist in database
+- Verify SearchView is initialized
+- Check filter chips state
 ```
 
 ## 🔄 Future Enhancements

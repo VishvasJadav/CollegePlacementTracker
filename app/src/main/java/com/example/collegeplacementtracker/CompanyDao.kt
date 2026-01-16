@@ -59,4 +59,10 @@ interface CompanyDao {
 
     @Query("SELECT * FROM company_table WHERE id = :companyId")
     suspend fun getCompanyByIdSync(companyId: Int): Company?
+
+    // Alias for insert method
+    suspend fun insertCompany(company: Company): Long = insert(company)
+
+    // Alias for update method
+    suspend fun updateCompany(company: Company) = update(company)
 }

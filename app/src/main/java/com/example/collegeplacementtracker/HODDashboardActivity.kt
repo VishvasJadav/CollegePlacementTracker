@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.collegeplacementtracker.utils.SessionManager
 
 
 class HODDashboardActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class HODDashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         // Check if logged in and is HOD
         if (!sessionManager.isLoggedIn() || !sessionManager.isHOD()) {

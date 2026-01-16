@@ -25,7 +25,7 @@ interface ApplicationDao {
     fun getApplicationById(applicationId: Int): LiveData<Application>
 
     @Query("SELECT * FROM application_table WHERE studentId = :studentId ORDER BY appliedAt DESC")
-    fun getApplicationsByStudent(studentId: Int): LiveData<List<Application>>
+    fun getApplicationsByStudent(studentId: Long): LiveData<List<Application>>
 
     @Query("SELECT * FROM application_table WHERE companyId = :companyId ORDER BY appliedAt DESC")
     fun getApplicationsByCompany(companyId: Int): LiveData<List<Application>>
@@ -34,7 +34,7 @@ interface ApplicationDao {
     fun getApplicationsByStatus(status: String): LiveData<List<Application>>
 
     @Query("SELECT * FROM application_table WHERE studentId = :studentId AND companyId = :companyId LIMIT 1")
-    suspend fun getExistingApplication(studentId: Int, companyId: Int): Application?
+    suspend fun getExistingApplication(studentId: Long, companyId: Int): Application?
 
     @Query("UPDATE application_table SET status = :status, lastUpdated = :timestamp WHERE id = :applicationId")
     suspend fun updateApplicationStatus(applicationId: Int, status: String, timestamp: Long)
@@ -80,7 +80,7 @@ interface ApplicationDao {
     // Queries that return ApplicationWithCompany (joined with company details)
     @Transaction
     @Query("SELECT * FROM application_table WHERE studentId = :studentId ORDER BY appliedAt DESC")
-    fun getApplicationsWithCompanyByStudent(studentId: Int): LiveData<List<ApplicationWithCompany>>
+    fun getApplicationsWithCompanyByStudent(studentId: Long): LiveData<List<ApplicationWithCompany>>
 
     @Transaction
     @Query(
@@ -104,5 +104,12 @@ interface ApplicationDao {
     @Transaction
     @Query("SELECT * FROM application_table WHERE tpoApproved = 0 ORDER BY appliedAt DESC")
     fun getPendingTPOApplicationsWithCompany(): LiveData<List<ApplicationWithCompany>>
+
+    // Alias for insert method
+    suspend fun insertApplication(application: Application): Long = insert(application)
+
+    // Suspend version for getting application by ID
+    @Query("SELECT * FROM application_table WHERE id = :applicationId")
+    suspend fun getApplicationByIdSync(applicationId: Int): Application?
 
 }

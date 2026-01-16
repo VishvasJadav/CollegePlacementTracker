@@ -115,4 +115,15 @@ object ValidationUtils {
             else -> Pair(true, "")
         }
     }
+
+    /**
+     * Validate package amount (Double version)
+     */
+    fun isValidPackageAmount(packageAmount: Double): Pair<Boolean, String> {
+        return when {
+            packageAmount < 0 -> Pair(false, "Package amount cannot be negative")
+            packageAmount > 100 -> Pair(false, "Package amount seems unrealistic")
+            else -> Pair(true, "")
+        }
+    }
 }

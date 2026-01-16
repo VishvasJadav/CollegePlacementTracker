@@ -1,8 +1,5 @@
 package com.example.collegeplacementtracker
 
-import com.example.collegeplacementtracker.Application
-import com.example.collegeplacementtracker.ApplicationDao
-import com.example.collegeplacementtracker.ApplicationWithCompany
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -15,16 +12,22 @@ interface ApplicationRepository {
 }
 
 class ApplicationRepositoryImpl(
-    private val applicationDao: ApplicationDao
+    private val applicationDao: ApplicationDao,
+    private val companyDao: CompanyDao
 ) : ApplicationRepository {
     
     override fun getStudentApplications(studentId: Long): Flow<List<ApplicationWithCompany>> = flow {
-        val applications = applicationDao.getStudentApplicationsWithCompany(studentId)
-        emit(applications)
+        // Get applications and manually join with companies
+        val applications = applicationDao.getApplicationsByStudentId(studentId.toInt())
+        val applicationsWithCompany = applications.map { application ->
+            val company = companyDao.getCompanyByIdSync(application.companyId)
+            ApplicationWithCompany(application, company)
+        }
+        emit(applicationsWithCompany)
     }
     
     override fun getApplicationById(id: Long): Flow<Application?> = flow {
-        val application = applicationDao.getApplicationById(id)
+        val application = applicationDao.getApplicationByIdSync(id.toInt())
         emit(application)
     }
     
@@ -33,10 +36,10 @@ class ApplicationRepositoryImpl(
     }
     
     override suspend fun updateApplicationStatus(id: Long, status: String) {
-        applicationDao.updateApplicationStatus(id, status, System.currentTimeMillis())
+        applicationDao.updateApplicationStatus(id.toInt(), status, System.currentTimeMillis())
     }
     
     override suspend fun withdrawApplication(id: Long) {
-        applicationDao.updateApplicationStatus(id, "withdrawn", System.currentTimeMillis())
+        applicationDao.updateApplicationStatus(id.toInt(), "withdrawn", System.currentTimeMillis())
     }
 }

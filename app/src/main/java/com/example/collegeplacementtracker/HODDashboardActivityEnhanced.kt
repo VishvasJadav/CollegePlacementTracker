@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.UIHelper
 import kotlinx.coroutines.launch
 
@@ -24,7 +25,7 @@ class HODDashboardActivityEnhanced : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hod_dashboard_enhanced)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
 
         if (!sessionManager.isLoggedIn() || !sessionManager.isHOD()) {
             navigateToLogin()
@@ -126,7 +127,7 @@ class HODDashboardActivityEnhanced : AppCompatActivity() {
             var highestPackage = 0.0
 
             for (student in students) {
-                applicationDao.getApplicationsByStudent(student.id)
+                applicationDao.getApplicationsByStudent(student.id.toLong())
                     .observe(this@HODDashboardActivityEnhanced) { applications ->
                         val selectedApps = applications.filter {
                             it.status == ApplicationStatus.SELECTED

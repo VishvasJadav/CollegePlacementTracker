@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.collegeplacementtracker.utils.DateUtils
 import com.example.collegeplacementtracker.utils.NotificationHelper
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.example.collegeplacementtracker.utils.UIHelper
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -45,7 +46,7 @@ class CompanyListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = "Available Companies"
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         showEligibleOnly = intent.getBooleanExtra("SHOW_ELIGIBLE_ONLY", false)
 
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
@@ -195,7 +196,7 @@ class CompanyListActivity : AppCompatActivity() {
     private fun loadCompanies() {
         lifecycleScope.launch {
             val userId = sessionManager.getUserId()
-            userDao.getUserById(userId).observe(this@CompanyListActivity) { user ->
+            userDao.getUserById(userId.toInt().toLong()).observe(this@CompanyListActivity) { user ->
                 if (showEligibleOnly && user != null) {
                     companyDao.getEligibleCompanies(user.cgpa ?: 0.0)
                         .observe(this@CompanyListActivity) { companies ->
@@ -387,7 +388,7 @@ class CompanyListActivity : AppCompatActivity() {
                 val userId = sessionManager.getUserId()
 
                 // Check if user is eligible
-                val user = userDao.getUserById(userId).value
+                val user = userDao.getUserById(userId.toInt().toLong()).value
                 if (user != null) {
                     val userCGPA = user.cgpa ?: 0.0
                     if (userCGPA < company.minimumCGPA) {
@@ -408,7 +409,8 @@ class CompanyListActivity : AppCompatActivity() {
                 }
 
                 // Check if already applied
-                val existingApp = applicationDao.getExistingApplication(userId, company.id)
+                val existingApp =
+                    applicationDao.getExistingApplication(userId.toInt().toLong(), company.id)
                 if (existingApp != null) {
                     UIHelper.showInfo(
                         this@CompanyListActivity,
@@ -428,7 +430,7 @@ class CompanyListActivity : AppCompatActivity() {
 
                 // Create application
                 val application = Application(
-                    studentId = userId,
+                    studentId = userId.toInt().toLong(),
                     companyId = company.id,
                     status = ApplicationStatus.PENDING,
                     appliedAt = System.currentTimeMillis()

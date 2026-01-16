@@ -30,7 +30,7 @@ data class Application(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
 
-    val studentId: Int,
+    val studentId: Long,
     val companyId: Int,
 
     val status: String,

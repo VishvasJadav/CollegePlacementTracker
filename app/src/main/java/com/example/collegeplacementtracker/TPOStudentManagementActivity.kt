@@ -58,7 +58,7 @@ class TPOStudentManagementActivity : AppCompatActivity() {
     }
 
     private fun showStudentDetails(student: User) {
-        applicationDao.getApplicationsByStudent(student.id).observe(this) { applications ->
+        applicationDao.getApplicationsByStudent(student.id.toLong()).observe(this) { applications ->
             val appliedCount = applications.size
             val selectedCount = applications.count { it.status == ApplicationStatus.SELECTED }
 

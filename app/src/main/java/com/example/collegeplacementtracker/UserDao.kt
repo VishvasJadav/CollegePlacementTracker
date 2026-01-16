@@ -44,10 +44,10 @@ interface UserDao {
     ): User?
 
     @Query("SELECT * FROM user_table WHERE id = :userId")
-    fun getUserById(userId: Int): LiveData<User>
+    fun getUserById(userId: Long): LiveData<User>
 
     @Query("SELECT * FROM user_table WHERE id = :userId")
-    suspend fun getUserByIdSync(userId: Int): User?
+    suspend fun getUserByIdSync(userId: Long): User?
 
     @Query("SELECT * FROM user_table WHERE role = :role ORDER BY fullName ASC")
     fun getUsersByRole(role: String): LiveData<List<User>>
@@ -74,5 +74,7 @@ interface UserDao {
     @Query("SELECT * FROM user_table")
     fun getAllUsers(): LiveData<List<User>>
 
+    // Alias for update method
+    suspend fun updateUser(user: User) = update(user)
 
 }

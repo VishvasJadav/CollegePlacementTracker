@@ -7,6 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class StudentDashboardTabsActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class StudentDashboardTabsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_dashboard_tabs)
 
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         userDao = database.userDao()
         applicationDao = database.applicationDao()

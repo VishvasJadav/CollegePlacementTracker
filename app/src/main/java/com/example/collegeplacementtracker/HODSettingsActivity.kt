@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.collegeplacementtracker.utils.SessionManager
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,7 @@ class HODSettingsActivity : AppCompatActivity() {
         supportActionBar?.title = "Settings"
 
         // Initialize
-        sessionManager = SessionManager(this)
+        sessionManager = SessionManager.getInstance(this)
         val database = AppDatabaseNew.getDatabase(this, lifecycleScope)
         userDao = database.userDao()
 
