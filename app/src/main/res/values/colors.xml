@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================ -->
+    <!-- PRIMARY THEME - Soft & Professional -->
+    <!-- ============================================ -->
+    <color name="primary_blue">#4A90D9</color>
+    <color name="primary_blue_dark">#3B7BBF</color>
+    <color name="primary_blue_light">#EBF4FC</color>
+    <color name="primary_blue_transparent">#804A90D9</color>
+
+    <!-- ============================================ -->
+    <!-- STATUS COLORS -->
+    <!-- ============================================ -->
+    <!-- Success - Placements, Approvals -->
+    <color name="success_green">#5CB85C</color>
+    <color name="success_green_light">#EDF7ED</color>
+    <color name="success_green_dark">#449D44</color>
+
+    <!-- Warning - Deadlines, Pending -->
+    <color name="warning_orange">#F0AD4E</color>
+    <color name="warning_orange_light">#FDF5E6</color>
+    <color name="warning_orange_dark">#EC971F</color>
+
+    <!-- Error - Rejections, Urgent -->
+    <color name="error_red">#D9534F</color>
+    <color name="error_red_light">#FBEAEA</color>
+    <color name="error_red_dark">#C9302C</color>
+
+    <!-- ============================================ -->
+    <!-- ROLE-SPECIFIC COLORS -->
+    <!-- ============================================ -->
+    <!-- Student - Learning & Growth (Soft Blue) -->
+    <color name="student_primary">#5DADE2</color>
+    <color name="student_primary_light">#EBF5FB</color>
+    <color name="student_gradient_start">#5DADE2</color>
+    <color name="student_gradient_end">#3498DB</color>
+
+    <!-- HOD - Leadership & Authority (Soft Teal) -->
+    <color name="hod_primary">#45B7AA</color>
+    <color name="hod_primary_light">#E8F6F5</color>
+    <color name="hod_gradient_start">#45B7AA</color>
+    <color name="hod_gradient_end">#2E8B84</color>
+
+    <!-- TPO - Success & Achievement (Soft Green) -->
+    <color name="tpo_primary">#58B368</color>
+    <color name="tpo_primary_light">#ECF7EE</color>
+    <color name="tpo_gradient_start">#58B368</color>
+    <color name="tpo_gradient_end">#3D9249</color>
+
+    <!-- ============================================ -->
+    <!-- NEUTRAL COLORS -->
+    <!-- ============================================ -->
+    <color name="text_primary">#2C3E50</color>
+    <color name="text_secondary">#5D6D7E</color>
+    <color name="text_hint">#95A5A6</color>
+    <color name="text_disabled">#BDC3C7</color>
+
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F8F9FA</color>
+    <color name="background_tertiary">#FAFBFC</color>
+
+    <color name="divider">#E5E8EB</color>
+    <color name="border">#DDE2E6</color>
+    <color name="shadow">#15000000</color>
+
+    <!-- ============================================ -->
+    <!-- ACCENT & HIGHLIGHT -->
+    <!-- ============================================ -->
+    <color name="accent_purple">#6C7CE0</color>
+    <color name="accent_purple_light">#F0F1FA</color>
+    <color name="accent_teal">#48C9B0</color>
+    <color name="accent_teal_light">#E8F8F5</color>
+
+    <!-- ============================================ -->
+    <!-- LEGACY SUPPORT (Keep for compatibility) -->
+    <!-- ============================================ -->
+    <color name="purple_200">#A8B4E8</color>
+    <color name="purple_500">#6C7CE0</color>
+    <color name="purple_700">#5A6AD0</color>
+    <color name="teal_200">#7DCEA0</color>
+    <color name="teal_700">#48C9B0</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- ============================================ -->
+    <!-- PACKAGE RANGE COLORS -->
+    <!-- ============================================ -->
+    <color name="package_high">#58B368</color>
+    <color name="package_high_light">#ECF7EE</color>
+    <color name="package_medium">#F0AD4E</color>
+    <color name="package_medium_light">#FDF5E6</color>
+    <color name="package_low">#5DADE2</color>
+    <color name="package_low_light">#EBF5FB</color>
+
+    <!-- ============================================ -->
+    <!-- APPLICATION STATUS COLORS -->
+    <!-- ============================================ -->
+    <color name="status_pending">#F0AD4E</color>
+    <color name="status_pending_bg">#FDF5E6</color>
+    <color name="status_shortlisted">#5DADE2</color>
+    <color name="status_shortlisted_bg">#EBF5FB</color>
+    <color name="status_selected">#58B368</color>
+    <color name="status_selected_bg">#ECF7EE</color>
+    <color name="status_rejected">#D9534F</color>
+    <color name="status_rejected_bg">#FBEAEA</color>
+
+    <!-- ============================================ -->
+    <!-- CHART COLORS -->
+    <!-- ============================================ -->
+    <color name="chart_1">#5DADE2</color>
+    <color name="chart_2">#58B368</color>
+    <color name="chart_3">#F0AD4E</color>
+    <color name="chart_4">#6C7CE0</color>
+    <color name="chart_5">#D9534F</color>
+    <color name="chart_6">#48C9B0</color>
+
+    <!-- ============================================ -->
+    <!-- OLD/LEGACY COLORS (Backward Compatibility) -->
+    <!-- ============================================ -->
+    <color name="Green">#58B368</color>
+    <color name="bottom_nav_color">#4A90D9</color>
+    <color name="purple_300">#6C7CE0</color>
+    <color name="_667eea">#4A90D9</color>
+    <color name="frosted_blue">#F5F9FC</color>
+    <color name="transperant">#00000000</color>
+    <color name="purple_100">#E8EBF7</color>
+
+    <!-- Student Dashboard Colors (Legacy - Now Soft Blue Tones) -->
+    <color name="student_color_1">#E8F4FC</color>
+    <color name="student_color_2">#D6EAF8</color>
+    <color name="student_color_3">#AED6F1</color>
+    <color name="student_color_4">#85C1E9</color>
+    <color name="student_color_5">#5DADE2</color>
+
+    <!-- ============================================ -->
+    <!-- PROFESSIONAL STUDENT DASHBOARD COLORS -->
+    <!-- ============================================ -->
+    <!-- Primary Student Dashboard Colors -->
+    <color name="student_primary_new">#4A90D9</color>
+    <color name="student_primary_variant_new">#3B7BBF</color>
+    <color name="student_secondary_new">#5DADE2</color>
+    <color name="student_tertiary_new">#85C1E9</color>
+
+    <!-- Professional Dashboard Card Backgrounds -->
+    <color name="card_background_primary">#FFFFFF</color>
+    <color name="card_background_secondary">#F8F9FA</color>
+    <color name="card_background_tertiary">#EBF5FB</color>
+
+    <!-- Status Colors for Dashboard -->
+    <color name="status_applied_primary">#5DADE2</color>
+    <color name="status_applied_secondary">#D4EDFC</color>
+    <color name="status_offers_primary">#58B368</color>
+    <color name="status_offers_secondary">#D5F0DA</color>
+    <color name="status_cgpa_primary">#F0AD4E</color>
+    <color name="status_cgpa_secondary">#FCEBD0</color>
+
+    <!-- Professional Dashboard Text Colors -->
+    <color name="dashboard_text_primary">#2C3E50</color>
+    <color name="dashboard_text_secondary">#5D6D7E</color>
+    <color name="dashboard_text_tertiary">#95A5A6</color>
+
+    <!-- Professional Dashboard Gradient -->
+    <color name="dashboard_gradient_start">#4A90D9</color>
+    <color name="dashboard_gradient_end">#3B7BBF</color>
+</resources>

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    package="com.example.collegeplacementtracker">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PlacementTracker"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".StudentDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".AddStudentActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"></activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
+
+        <activity
+            android:name=".StudentDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HODDashboardActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TPODashboardActivity"
+            android:exported="false" />
+
+        <!-- ============================================ -->
+        <!-- NEW STUDENT ACTIVITIES -->
+        <!-- ============================================ -->
+        <activity
+            android:name=".StudentProfileActivity"
+            android:exported="false"
+            android:label="My Profile"
+            android:parentActivityName=".StudentDashboardActivityEnhanced" />
+
+        <activity
+            android:name=".StudentDashboardActivityEnhanced"
+            android:exported="false"
+            android:label="Student Dashboard" />
+
+        <activity
+            android:name=".CompanyListActivity"
+            android:exported="false"
+            android:label="Companies"
+            android:parentActivityName=".StudentDashboardActivityEnhanced" />
+
+        <activity
+            android:name=".MyApplicationsActivity"
+            android:exported="false"
+            android:label="My Applications"
+            android:parentActivityName=".StudentDashboardActivityEnhanced" />
+
+        <!-- ============================================ -->
+        <!-- NEW HOD ACTIVITIES -->
+        <!-- ============================================ -->
+        <activity
+            android:name=".HODDashboardActivityEnhanced"
+            android:exported="false"
+            android:label="HOD Dashboard" />
+
+        <activity
+            android:name=".DepartmentStudentsActivity"
+            android:exported="false"
+            android:label="Department Students"
+            android:parentActivityName=".HODDashboardActivityEnhanced" />
+
+        <activity
+            android:name=".HODApprovalsActivity"
+            android:exported="false"
+            android:label="Pending Approvals"
+            android:parentActivityName=".HODDashboardActivityEnhanced" />
+
+        <!-- ============================================ -->
+        <!-- NEW TPO ACTIVITIES -->
+        <!-- ============================================ -->
+        <activity
+            android:name=".TPODashboardActivityEnhanced"
+            android:exported="false"
+            android:label="TPO Dashboard" />
+
+        <activity
+            android:name=".AddCompanyActivity"
+            android:exported="false"
+            android:label="Post New Company"
+            android:parentActivityName=".TPODashboardActivityEnhanced" />
+
+        <activity
+            android:name=".TPOCompanyManagementActivity"
+            android:exported="false"
+            android:label="Manage Companies"
+            android:parentActivityName=".TPODashboardActivityEnhanced" />
+
+        <activity
+            android:name=".TPOStudentManagementActivity"
+            android:exported="false"
+            android:label="All Students"
+            android:parentActivityName=".TPODashboardActivityEnhanced" />
+
+        <activity
+            android:name=".TPOApplicationManagementActivity"
+            android:exported="false"
+            android:label="Manage Applications"
+            android:parentActivityName=".TPODashboardActivityEnhanced" />
+
+        <activity
+            android:name=".StudentDashboardTabsActivity"
+            android:exported="false"
+            android:label="Dashboard" />
+
+        <!-- HOD Dashboard Activity -->
+        <activity
+            android:name=".HODDashboardTabsActivity"
+            android:exported="false"
+            android:label="HOD Dashboard" />
+
+        <!-- ============================================ -->
+        <!-- NEW FEATURE ACTIVITIES -->
+        <!-- ============================================ -->
+
+        <!-- Forgot Password -->
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:label="Reset Password"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Student Resources -->
+        <activity
+            android:name=".StudentResourcesActivity"
+            android:exported="false"
+            android:label="Placement Resources"
+            android:parentActivityName=".StudentDashboardTabsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- HOD Analysis -->
+        <activity
+            android:name=".HODAnalysisActivity"
+            android:exported="false"
+            android:label="Department Analysis"
+            android:parentActivityName=".HODDashboardTabsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- HOD Settings -->
+        <activity
+            android:name=".HODSettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".HODDashboardTabsActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- OTP Verification -->
+        <activity
+            android:name=".OTPVerificationActivity"
+            android:exported="false"
+            android:label="Verify OTP"
+            android:screenOrientation="portrait" />
+
+        <!-- Reset Password -->
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false"
+            android:label="Reset Password"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- Change Password -->
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false"
+            android:label="Change Password"
+            android:screenOrientation="portrait" />
+
+        <!-- ============================================ -->
+        <!-- NEW TPO FEATURE ACTIVITIES -->
+        <!-- ============================================ -->
+
+        <!-- TPO Interview Management -->
+        <activity
+            android:name=".TPOInterviewManagementActivity"
+            android:exported="false"
+            android:label="Interview Management"
+            android:parentActivityName=".TPODashboardActivityEnhanced"
+            android:theme="@style/Theme.PlacementTracker.NoActionBar" />
+
+        <!-- TPO Reports & Analysis -->
+        <activity
+            android:name=".TPOReportsAnalysisActivity"
+            android:exported="false"
+            android:label="Reports &amp; Analysis"
+            android:parentActivityName=".TPODashboardActivityEnhanced"
+            android:theme="@style/Theme.PlacementTracker.NoActionBar" />
+
+        <!-- TPO Settings -->
+        <activity
+            android:name=".TPOSettingsActivity"
+            android:exported="false"
+            android:label="TPO Settings"
+            android:parentActivityName=".TPODashboardActivityEnhanced"
+            android:theme="@style/Theme.PlacementTracker.NoActionBar" />
+
+    </application>
+
+</manifest>
