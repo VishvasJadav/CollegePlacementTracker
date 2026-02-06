@@ -53,7 +53,7 @@ Filter Chips:
 - By Deadline (Most urgent first)
 - By Posted Date
 
-### 🎨 Improved User Experience
+### Improved User Experience
 
 - **Material Design 3**: Modern UI with smooth animations
 - **Better Error Handling**: User-friendly error messages with retry options
@@ -61,34 +61,34 @@ Filter Chips:
 - **Success Notifications**: Visual confirmation for all actions
 - **Smooth Transitions**: Polished animations between screens
 
-### 📱 Smart Notifications
+### Smart Notifications
 
 - **Application Status Updates**: Get notified when application status changes
 - **New Company Alerts**: Instant notifications for newly posted companies
 - **Deadline Reminders**: Reminders for upcoming application deadlines
 - **Approval Notifications**: HODs get notified about pending approvals
 
-### 📊 Enhanced Dashboard
+###  Enhanced Dashboard
 
 - **Real-time Statistics**: Live updates of placement metrics
 - **Visual Indicators**: Color-coded status for easy identification
 - **Quick Actions**: One-tap access to common actions
 - **Deadline Tracking**: Visual countdown for application deadlines
 
-### 🎯 Smart Application System
+###  Smart Application System
 
 - **Eligibility Checking**: Automatic validation of CGPA and branch requirements
 - **Duplicate Prevention**: Can't apply to the same company twice
 - **Position Tracking**: Real-time tracking of available positions
 - **Status History**: Complete application timeline
 
-### 📤 Sharing Features
+###  Sharing Features
 
 - **Company Sharing**: Share job opportunities via any app
 - **Easy Export**: Export company details and share with friends
 - **Professional Format**: Well-formatted shareable content
 
-### 🛠️ Developer Features
+### Developer Features
 
 - **Clean Architecture**: Separated utility classes for better code organization
 - **Kotlin Coroutines**: Efficient asynchronous operations
@@ -96,7 +96,7 @@ Filter Chips:
 - **Room Database**: Robust local data persistence
 - **MVVM Pattern**: Maintainable and testable code
 
-### 📦 Utility Classes
+###  Utility Classes
 
 New utility classes for better code organization:
 
@@ -140,7 +140,7 @@ New utility classes for better code organization:
     - sendDeadlineReminder() - Deadline notifications
     - sendApprovalRequestNotification() - Approval alerts
 
-### 📱 UI Components
+###  UI Components
 
 - **CompanyDetailsBottomSheet.kt**: Modern bottom sheet for company details
     - Better UX than AlertDialog
@@ -148,41 +148,41 @@ New utility classes for better code organization:
     - More space for information
     - Quick actions (Apply, Share, Close)
 
-## 📱 User Roles & Features
+##  User Roles & Features
 
-### 👨‍🎓 Student Features
+###  Student Features
 
-- ✅ View all available companies
-- ✅ Filter and search companies
-- ✅ Apply to eligible companies
-- ✅ Track application status
-- ✅ View placement statistics
-- ✅ Manage profile
-- ✅ Receive notifications
-- ✅ Share opportunities
+-  View all available companies
+-  Filter and search companies
+-  Apply to eligible companies
+-  Track application status
+-  View placement statistics
+-  Manage profile
+-  Receive notifications
+-  Share opportunities
 
-### 👨‍💼 HOD Features
+###  HOD Features
 
-- ✅ View department-wise statistics
-- ✅ Approve/reject student applications
-- ✅ Monitor department placements
-- ✅ View student details
-- ✅ Generate reports
-- ✅ Track company visits
-- ✅ Department analytics
+-  View department-wise statistics
+-  Approve/reject student applications
+-  Monitor department placements
+-  View student details
+-  Generate reports
+-  Track company visits
+-  Department analytics
 
-### 👔 TPO Features
+###  TPO Features
 
-- ✅ Add new companies
-- ✅ Manage all applications
-- ✅ View overall statistics
-- ✅ Student management
-- ✅ Company management
-- ✅ Generate placement reports
-- ✅ Monitor all departments
-- ✅ Final approval authority
+-  Add new companies
+-  Manage all applications
+-  View overall statistics
+-  Student management
+-  Company management
+-  Generate placement reports
+-  Monitor all departments
+-  Final approval authority
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -221,7 +221,7 @@ git clone https://github.com/yourusername/college-placement-tracker.git
 - Email: tpo@college.edu
 - Password: tpo123
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 app/
@@ -245,7 +245,7 @@ app/
 │       └── values/                # Strings, colors, themes
 ```
 
-## 📦 Dependencies
+##  Dependencies
 
 ### Core Libraries
 
@@ -308,7 +308,7 @@ testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
 testImplementation 'androidx.arch.core:core-testing:2.2.0'
 ```
 
-## 🎨 UI/UX Improvements
+##  UI/UX Improvements
 
 ### Color Scheme
 
@@ -326,7 +326,7 @@ testImplementation 'androidx.arch.core:core-testing:2.2.0'
 - Accessible color contrasts
 - Touch-friendly UI elements (48dp minimum)
 
-## 🔧 Code Quality Features
+##  Code Quality Features
 
 ### Security Best Practices
 
@@ -455,7 +455,7 @@ NotificationHelper.sendNewCompanyNotification(
 )
 ```
 
-## 📊 Database Schema
+##  Database Schema
 
 ### User Table
 
@@ -479,7 +479,7 @@ NotificationHelper.sendNewCompanyNotification(
 - offeredPackage, selectedDate
 - hodApproved, tpoApproved
 
-## 🧪 Testing
+##  Testing
 
 ### Unit Tests
 
@@ -500,7 +500,7 @@ Run tests:
 ./gradlew connectedAndroidTest
 ```
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
@@ -544,7 +544,7 @@ Solution:
 - Check filter chips state
 ```
 
-## 🔄 Future Enhancements
+##  Future Enhancements
 
 ### Planned Features
 
@@ -564,19 +564,19 @@ Solution:
 - [ ] Dark mode
 - [ ] Multi-language support
 
-## 📝 Version History
+##  Version History
 
 ### Version 2.0 (Current)
 
-- ✅ Enhanced security with password hashing
-- ✅ Advanced search and filter system
-- ✅ Smart notifications
-- ✅ Improved UI/UX
-- ✅ Better error handling
-- ✅ Code refactoring with utils package
-- ✅ Input validation
-- ✅ Sharing features
-- ✅ Deadline tracking
+-  Enhanced security with password hashing
+-  Advanced search and filter system
+-  Smart notifications
+-  Improved UI/UX
+-  Better error handling
+-  Code refactoring with utils package
+-  Input validation
+-  Sharing features
+-  Deadline tracking
 
 ### Version 1.0
 
@@ -586,7 +586,7 @@ Solution:
 - Simple dashboard
 - Database integration
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these steps:
 
@@ -604,28 +604,28 @@ Contributions are welcome! Please follow these steps:
 - Write unit tests for new features
 - Update documentation
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👥 Authors
+##  Authors
 
-- Your Name - Initial work and v2.0 enhancements
+- Vishvas Jadav - Initial work and v2.0 enhancements
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - Material Design team for UI guidelines
 - Android Jetpack team for architecture components
 - Open source community for amazing libraries
 
-## 📞 Support
+##  Support
 
-For support, email support@example.com or create an issue in the repository.
+For support, create an issue in the repository.
 
-## 🌟 Show Your Support
+##  Show Your Support
 
-Give a ⭐️ if this project helped you!
+Give a  if this project helped you!
 
 ---
 
-**Built with ❤️ using Kotlin and Android Jetpack**
+**Built with using Kotlin **
