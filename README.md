@@ -1,18 +1,18 @@
-# 🎓 College Placement Tracker v2.0
+# College Placement Tracker v2.0
 
 A comprehensive Android application for managing college placement activities with role-based access
 for Students, HODs, and Training & Placement Officers (TPO).
 
-## ✨ New Features in v2.0
+##  New Features in v2.0
 
-### 🔐 Enhanced Security
+###  Enhanced Security
 
 - **Password Hashing**: Implemented PBKDF2 with salt for secure password storage
 - **Input Validation**: Real-time validation for all user inputs
 - **Login Attempt Limiting**: Maximum 5 login attempts to prevent brute force attacks
 - **Session Management**: Secure session handling with automatic timeout
 
-### 🔍 Advanced Search & Filter
+###  Advanced Search & Filter
 
 - **Smart Search**: Search companies by name, role, or location
 - **Multi-Filter System**:
